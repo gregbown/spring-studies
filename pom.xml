@@ -14,7 +14,7 @@
     </parent>
     <groupId>studies.springframework</groupId>
     <artifactId>spring-studies</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>spring-studies</name>
     <description>Spring Studies</description>
 
@@ -47,6 +47,7 @@
         <connection>scm:git:git@github.com:gregbown/spring-studies.git</connection>
         <url>scm:git:git@github.com:gregbown/spring-studies.git</url>
         <developerConnection>scm:git:git@github.com:gregbown/spring-studies.git</developerConnection>
-    </scm>
+      <tag>spring-studies-0.0.1</tag>
+  </scm>
 
 </project>
