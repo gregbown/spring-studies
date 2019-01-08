@@ -44,8 +44,6 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:git@github.com:gregbown/spring-studies.git</connection>
-        <url>scm:git:git@github.com:gregbown/spring-studies.git</url>
         <developerConnection>scm:git:git@github.com:gregbown/spring-studies.git</developerConnection>
     </scm>
 
