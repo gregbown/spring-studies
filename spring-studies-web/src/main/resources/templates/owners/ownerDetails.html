@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+  <body>
+
+    <table th:object="${owner}" class="table table-striped owner">
+      <caption class="bg-dark"><h2>Owner Information</h2><a th:href="@{{id}/edit(id=${owner.id})}" class="btn btn-light">Edit Owner</a><a th:href="@{{id}/pets/new(id=${owner.id})}" class="btn btn-light">Add New Pet</a></caption>
+      <tr>
+        <th>Name</th>
+        <td><b th:text="*{firstName + ' ' + lastName}">name</b></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td th:text="*{address}">address</td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td th:text="*{city}">city</td>
+      </tr>
+      <tr>
+        <th>Telephone</th>
+        <td th:text="*{telephone}">telephone</td>
+      </tr>
+    </table>
+    <table th:each="pet,iteration : ${owner.pets}" class="table table-striped pets">
+      <caption th:if="${iteration.first}"  class="bg-dark"><h2>Pets</h2></caption>
+      <colgroup>
+        <col span="4" class="pet-info">
+        <col span="2" class="appointment-info">
+      </colgroup>
+      <tr>
+        <th class="btn-cel"><a th:href="@{{ownerId}/pets/{petId}/edit(ownerId=${owner.id},petId=${pet.id})}" class="btn btn-dark">Edit Pet</a></th>
+        <th class="name-cel">Name</th>
+        <th class="date-cel">Birth Date</th>
+        <th class="type-cel">Type</th>
+        <th class="date-cel">Appointments</th>
+        <th class="appointment-cel"><a th:href="@{{ownerId}/pets/{petId}/visits/new(ownerId=${owner.id},petId=${pet.id})}" class="btn btn-secondary">Make Appointment</a></th>
+      </tr>
+      <tr>
+        <td class="btn-cel"></td>
+        <td th:text="${pet.name}" class="name-cel">name</td>
+        <td th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}" class="date-cel">date</td>
+        <td th:text="${pet.petType}" class="type-cel">type</td>
+        <td class="sub-heading date-cel">Date</td>
+        <td class="sub-heading">Reason</td>
+      </tr>
+      <tr th:each="visit : ${pet.visits}">
+        <td colspan="4" class="appointment-spacer"></td>
+        <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
+        <td th:text="${visit?.description}" class="appointment-cel"></td>
+      </tr>
+      <tr class="clear-row"><td colspan="6">&#160;</td></tr>
+    </table>
+
+  </body>
+</html>
